@@ -1,0 +1,45 @@
+<div class="row bg1">
+  <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h2 style="align-self: center;
+    color: #fff;">Angular Validation Example</h2>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-group">
+                <div class="col-md-8">
+                    <label>First Name: </label>
+                    <input type="text" formControlName="fname" style="width: 100%;" class="form-control mb-2">
+                    <div *ngIf="m.fname.touched && m.fname.invalid" class="alert alert-danger">
+                        <div *ngIf="m.fname.errors?.required">Please enter first name</div>
+                        <div *ngIf="m.fname.errors?.pattern">Please enter only alphabet characters</div>
+                    </div>
+
+                    <label>Last Name: </label>
+                    <input type="text" formControlName="lname" style="width: 100%;" class="form-control mb-2">
+                    <div *ngIf="m.lname.touched && m.lname.invalid" class="alert alert-danger">
+                        <div *ngIf="m.lname.errors?.required">Please enter last name</div>
+                        <div *ngIf="m.lname.errors?.pattern">Please enter only alphabet characters</div>
+                    </div>
+
+                    <label>Mobile number: </label>
+                    <input type="text" formControlName="mob" style="width: 100%;" [minLength]="10" maxlength="14" class="form-control mb-2">
+                    <div *ngIf="m.mob.touched && m.mob.invalid" class="alert alert-danger">
+                        <div *ngIf="m.mob.errors?.required">Please enter mobile number</div>
+                        <div *ngIf="m.mob.errors?.pattern">Mobile number is not 10 digit</div>
+                    </div>
+
+
+                    <label>Email: </label>
+                    <input type="text" formControlName="email" style="width: 100%;" class="form-control mb-2">
+                    <div *ngIf="m.email.touched && m.email.invalid" class="alert alert-danger">
+                        <div *ngIf="m.email.errors?.required">Please enter email</div>
+                        <div *ngIf="m.email.errors?.pattern">Please enter correct email address</div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid mt-3">
+                <button class="btn btn-primary" [disabled]="!myForm.valid" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>

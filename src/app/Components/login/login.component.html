@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+
+    <div class="hide-md">
+
+    </div>
+    <h2>Login</h2>
+    <div class="container col-md-6">
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="loginForm">
+        <div class="form-group">
+          <label text="Username" id="lblUsername">Usernsme :</label>
+          <input type="text" class="form-control" id="txtUsername" [pattern]="unamePattern" formControlName="userName" placeholder="Username" required>
+          <div *ngIf="pUsername?.errors?.pattern">
+            User name must be combination of lettes and digits.
+       </div>
+        </div>
+        <div class="form-group">
+          <label text="Password" id="lblPassword">Password :</label>
+          <input class="form-control" type="password" name="password" id="txtPassword" [pattern]="pwdPattern" formControlName="password" placeholder="Password" required>
+        <div *ngIf="pPassword?.errors?.pattern">
+          Password must contain at least one number and one uppercase and lowercase letter.Minimum 8 characters length.
+        </div>
+        </div>
+        <div>
+          <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit">Submit</button>
+         </div>
+      </form>
+    </div>

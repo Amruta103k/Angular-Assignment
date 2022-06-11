@@ -5,33 +5,40 @@
     color: #fff;">Angular Validation Example</h2>
         <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
             <div class="form-group" style="width: 100%;">
-                    <label>First Name: </label>
+                    <label>First Name : </label>
                     <input type="text" formControlName="fname" style="width: 100%;" class="form-control mb-2">
                     <div *ngIf="m.fname.touched && m.fname.invalid" class="alert alert-danger">
                         <div *ngIf="m.fname.errors?.required">Please enter first name</div>
                         <div *ngIf="m.fname.errors?.pattern">Please enter only alphabet characters</div>
                     </div>
 
-                    <label>Last Name: </label>
+                    <label>Last Name : </label>
                     <input type="text" formControlName="lname" style="width: 100%;" class="form-control mb-2">
                     <div *ngIf="m.lname.touched && m.lname.invalid" class="alert alert-danger">
                         <div *ngIf="m.lname.errors?.required">Please enter last name</div>
                         <div *ngIf="m.lname.errors?.pattern">Please enter only alphabet characters</div>
                     </div>
-                    <label>Email: </label>
+                    <label>Email : </label>
                     <input type="text" formControlName="email" style="width: 100%;" class="form-control mb-2">
                     <div *ngIf="m.email.touched && m.email.invalid" class="alert alert-danger">
                         <div *ngIf="m.email.errors?.required">Please enter email</div>
                         <div *ngIf="m.email.errors?.pattern">Please enter correct email address</div>
                     </div>
-                    <label>Mobile number: </label>
+                    <label>City : </label>
+                    <select formControlName="city" style="width: 100%;" class="form-control mb-2">
+                      <option *ngFor="let cname of Cities" value="{{cname}}">{{cname}}</option>
+                      </select>
+                    <div *ngIf="m.city.touched && m.city.invalid" class="alert alert-danger">
+                        <div *ngIf="m.city.errors?.required">Please select city</div>
+                    </div>
+                    <label>Mobile number : </label>
                     <input type="text" formControlName="mob" style="width: 100%;" [minLength]="10" maxlength="14" class="form-control mb-2">
                     <div *ngIf="m.mob.touched && m.mob.invalid" class="alert alert-danger">
                         <div *ngIf="m.mob.errors?.required">Please enter mobile number</div>
                         <div *ngIf="m.mob.errors?.pattern">Mobile number is not 10 digit</div>
                     </div>
 
-                    <label>Gender:</label><br />
+                    <label>Gender &nbsp;:</label>&nbsp;&nbsp;
                     <input class="mb-2" type="radio" id="gender" formControlName="gender" name="gender" value="male" /> Male
 
                     <input  type="radio" class="mb-2" id="gender"  formControlName="gender" name="gender" value="female" /> Female
@@ -42,7 +49,7 @@
 
                   <label>Areas of interest :</label><br />
 
-                  <div *ngFor="let ar of areaOfint; let i=index">
+                  <div *ngFor="let ar of areaOfint; let i=index" >
                     <label>
                       <input type="checkbox" [value]= "ar.value" (change)="onCheckboxChange($event)" />
                       {{ar.name}}

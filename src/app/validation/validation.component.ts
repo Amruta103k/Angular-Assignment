@@ -18,7 +18,7 @@ export class ValidationComponent implements OnInit {
     { name: 'Drawing', value: 'Drawing' },
     { name: 'Dancing', value: 'Dancing' }
   ];
-
+  Cities:any=['Pune','Mumbai','Anagar','Nagpur'];
   public myForm: FormGroup;
   public isSubmitted: boolean = false;
   constructor(private formBuilder: FormBuilder) {
@@ -33,6 +33,7 @@ export class ValidationComponent implements OnInit {
       lname: ['', [Validators.required, Validators.pattern('[A-Za-z]{0,20}$')]],
       email: ['', [Validators.required, Validators.pattern(email)]],
       gender: ['', Validators.required],
+      city:[''],
            checkArray: this.formBuilder.array([])
     });
   }
@@ -75,7 +76,9 @@ export class ValidationComponent implements OnInit {
         ' \nArea of interest : ' +
         this.m.checkArray.value +
         ' \nGender : ' +
-        this.m.gender.value
+        this.m.gender.value +
+        ' \City : ' +
+        this.m.city.value
     );
 
     alert(
@@ -90,7 +93,9 @@ export class ValidationComponent implements OnInit {
         '\n  Area of interest : ' +
         this.m.checkArray.value +
         '\n  Gender : ' +
-        this.m.gender.value
+        this.m.gender.value +
+        ' \City : ' +
+        this.m.city.value
     );
   }
 }

@@ -41,8 +41,13 @@
                   <br>
 
                   <label>Areas of interest :</label><br />
-                  <input  formControlName="areaOfInterest" type="checkbox">Playing
-                  <input  formControlName="areaOfInterest" type="checkbox">Drawing
+
+                  <div *ngFor="let ar of areaOfint; let i=index">
+                    <label>
+                      <input type="checkbox" [value]= "ar.value" (change)="onCheckboxChange($event)" />
+                      {{ar.name}}
+                    </label>
+                  </div>
 
                 </div>
             <div class="form-group center">

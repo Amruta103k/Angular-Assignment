@@ -4,14 +4,17 @@
     font-family: "Lato", sans-serif;
   }
 
+  .imgSlider {
+    width: 100%;
+  }
   .sidebar {
     margin: 0;
     padding: 0;
     width: 200px;
     background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+    position: absolute;
+    height: 80%;
+    overflow-y: hidden;
   }
 
   .sidebar a {
@@ -22,7 +25,7 @@
   }
 
   .sidebar a.active {
-    background-color: #04aa6d;
+    background-color: #578b78;
     color: white;
   }
 

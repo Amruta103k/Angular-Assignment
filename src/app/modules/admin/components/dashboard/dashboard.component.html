@@ -1,5 +1,6 @@
+<div class="container">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
+  <!-- <div class="container"> -->
     <a class="navbar-brand" href="#">Dashboard</a>
     <button
       class="navbar-toggler"
@@ -14,7 +15,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item" routerLinkActive="active">
+        <!-- <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="./home"
             >Home
             <span class="sr-only">(current)</span>
@@ -28,13 +29,13 @@
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="./contact">Contact</a>
-        </li>
+        </li> -->
         <li class="btn-primary nav-item text-white" role="button">
           <a class="nav-link text-white" (click)="logout()">logout</a>
         </li>
       </ul>
     </div>
-  </div>
+  <!-- </div> -->
 </nav>
 <div class="sidebar">
   <a class="active" [routerLink]="">Dashboard</a>
@@ -59,13 +60,13 @@
     <!-- The slideshow -->
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="assets/Images/sliderImg1.jpg" alt="Containers" height="100%" width="100%"/>
+        <img src="assets/Images/sliderImg1.jpg" class="imgSlider" alt="Container 1" />
       </div>
       <div class="carousel-item">
-        <img src="assets/Images/sliderImg2.jpg" alt="Container 2"  height="100%" width="100%"/>
+        <img src="assets/Images/sliderImg2.jpg" class="imgSlider" alt="Container 2" />
       </div>
       <div class="carousel-item">
-        <img src="assets/Images/sliderImg3.jpg" alt="Container 3"  height="100%" width="100%"/>
+        <img src="assets/Images/sliderImg3.jpg" class="imgSlider" alt="Container 3"  />
       </div>
     </div>
 
@@ -77,4 +78,5 @@
       <span class="carousel-control-next-icon"></span>
     </a>
   </div>
+</div>
 </div>

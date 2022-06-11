@@ -1,26 +1,60 @@
-
-
-    <h2>Login</h2>
-
-    <div class="container col-md-6 center">
-
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="loginForm">
-        <div class="form-group">
-          <label text="Username" id="lblUsername">Usernsme :</label>
-          <input type="text" class="form-control" id="txtUsername" [pattern]="unamePattern" formControlName="userName" placeholder="Username" required>
-          <div *ngIf="pUsername?.errors?.pattern">
-            User name must be combination of lettes and digits.
-       </div>
+<div class="container vh-100">
+  <div class="row justify-content-center vh-100">
+    <div class="card my-auto shadow col-md-6">
+      <!--   <div class="card-body px-5">
+        <div style="height: 100%; width: 100%; margin: 5%">
+          <div class="container col-sm-4 col-lg-4 col-md-4 center"> -->
+            <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+            id="loginForm"
+            >
+            <h2>Login</h2>
+              <div class="form-group">
+                <label text="Username" id="lblUsername">Usernsme :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="txtUsername"
+                  [pattern]="unamePattern"
+                  formControlName="userName"
+                  placeholder="Username"
+                  required
+                />
+                <div *ngIf="pUsername?.errors?.pattern" class="alert alert-danger">
+                  User name must be combination of lettes and digits.
+                </div>
+              </div>
+              <div class="form-group">
+                <label text="Password" id="lblPassword">Password :</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  id="txtPassword"
+                  [pattern]="pwdPattern"
+                  formControlName="password"
+                  placeholder="Password"
+                  required
+                />
+                <div *ngIf="pPassword?.errors?.pattern" class="alert alert-danger">
+                  Password must contain at least one number and one uppercase
+                  and lowercase letter.Minimum 8 characters length.
+                </div>
+              </div>
+              <div class="content-justify-center">
+                <button
+                  class="btn btn-primary "
+                  [disabled]="!loginForm.valid"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          <!-- </div>
         </div>
-        <div class="form-group">
-          <label text="Password" id="lblPassword">Password :</label>
-          <input class="form-control" type="password" name="password" id="txtPassword" [pattern]="pwdPattern" formControlName="password" placeholder="Password" required>
-        <div *ngIf="pPassword?.errors?.pattern">
-          Password must contain at least one number and one uppercase and lowercase letter.Minimum 8 characters length.
-        </div>
-        </div>
-        <div>
-          <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit">Submit</button>
-         </div>
-      </form>
+      </div>-->
     </div>
+  </div>
+</div>

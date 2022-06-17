@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
     userName: new FormControl(),
     password: new FormControl(),
   });
-  constructor(private auth: AuthService, private router: Router) {}
+
+  constructor(private auth: AuthService, private router: Router,public datepipe: DatePipe) {}
   get pUsername() {
     return this.loginForm.get('userName');
   }
@@ -31,10 +32,14 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['admin']);
     }
   }
+get pdate()
+{
+  return this.datepipe.transform((new Date), 'dd/MM/yyyy');
+}
 
   onSubmit() {
     console.log('Username : ' + this.pUsername?.value);
-    console.log('Password : ' + this.pPassword?.value);
+    console.log('Password : ' + this.pPassword?.value );
 
     if (this.loginForm.valid) {
       //  this.auth.login(this.loginForm.value).subscribe((result)=>{this.router.navigate(['/admin']);},(err:Error)=>{alert('err.....'+err.message);});

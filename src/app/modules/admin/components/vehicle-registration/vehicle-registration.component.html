@@ -1,0 +1,81 @@
+<div class="row bg1">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <h2 style="align-self: center; color: #fff">Vehicle Registration</h2>
+    <div class="row">
+      <form
+        [formGroup]="formVehicleRegistration"
+        (ngSubmit)="onSubmit()"
+        novalidate
+      >
+        <div class="form-group" style="width: 100%">
+          <label>Vehicle Registration Number : </label>
+          <input
+            type="text"
+            formControlName="VRNo"
+            style="width: 100%"
+            class="form-control mb-2"
+          />
+          <div
+            *ngIf="m.VRNo.touched && m.VRNo.invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="m.VRNo.errors?.required">
+              Please enter Vehicle registration number
+            </div>
+            <div *ngIf="m.VRNo.errors?.pattern">
+              Please enter only numeric value.
+            </div>
+          </div>
+
+          <label>Vehicle Owner Name : </label>
+          <input
+            type="text"
+            formControlName="VOname"
+            style="width: 100%"
+            class="form-control mb-2"
+          />
+          <div
+            *ngIf="m.VOname.touched && m.VOname.invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="m.VOname.errors?.required">
+              Please enter vehicle owner name
+            </div>
+            <div *ngIf="m.VOname.errors?.pattern">
+              Please enter only alphabet characters
+            </div>
+          </div>
+
+          <label>Brand : </label>
+          <select
+            formControlName="brand"
+            style="width: 100%"
+            class="form-control mb-2"
+          >
+            <option *ngFor="let bname of Brands" value="{{ bname }}">
+              {{ bname }}
+            </option>
+          </select>
+          <div
+            *ngIf="m.brand.touched && m.brand.invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="m.brand.errors?.required">Please select Brand</div>
+          </div>
+
+          <br />
+        </div>
+        <div class="form-group center">
+          <button
+            class="btn btn-primary"
+            [disabled]="!formVehicleRegistration.valid"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

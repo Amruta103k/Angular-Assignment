@@ -45,7 +45,7 @@ get pdate()
       //  this.auth.login(this.loginForm.value).subscribe((result)=>{this.router.navigate(['/admin']);},(err:Error)=>{alert('err.....'+err.message);});
       of(this.auth.login(this.loginForm.value)).subscribe({
         next: (result) => {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/admin/Sliderimages']);
         },
         error: (e) => console.error(e),
       });

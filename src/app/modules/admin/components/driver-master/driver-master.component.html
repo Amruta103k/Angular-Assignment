@@ -1,0 +1,150 @@
+<div class="row bg1">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <h2 style="align-self: center; color: #fff">Driver Registration</h2>
+    <form [formGroup]="driverMaster" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group" style="width: 100%">
+        <label>Driver Name : </label>
+        <input
+          type="text"
+          formControlName="dname"
+          style="width: 100%"
+          class="form-control mb-2"
+        />
+        <div
+          *ngIf="m.dname.touched && m.dname.invalid"
+          class="alert alert-danger"
+        >
+          <div *ngIf="m.dname.errors?.required">Please enter driver name</div>
+          <div *ngIf="m.dname.errors?.pattern">
+            Please enter only alphabet characters
+          </div>
+        </div>
+        <label>Contact number : </label>
+        <input
+          type="text"
+          formControlName="mob"
+          style="width: 100%"
+          [minLength]="10"
+          maxlength="14"
+          class="form-control mb-2"
+        />
+        <div *ngIf="m.mob.touched && m.mob.invalid" class="alert alert-danger">
+          <div *ngIf="m.mob.errors?.required">Please enter mobile number</div>
+          <div *ngIf="m.mob.errors?.pattern">Mobile number is not 10 digit</div>
+        </div>
+
+        <label>License Number : </label>
+        <input
+          type="text"
+          formControlName="lno"
+          style="width: 100%"
+          class="form-control mb-2"
+        />
+        <div *ngIf="m.lno.touched && m.lno.invalid" class="alert alert-danger">
+          <div *ngIf="m.lno.errors?.required">Please enter license number</div>
+          <div *ngIf="m.lno.errors?.pattern">Please enter only digit</div>
+        </div>
+        <label> License Validity: </label>
+        <div class="row">
+          <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
+            <input
+              formControlName="date"
+              type="date"
+              class="form-control inputText"
+            />
+          </div>
+        </div>
+
+        <br />
+        <label>License Image : </label>
+        <input
+          type="file"
+          formControlName="lImg"
+          style="width: 100%"
+          class="form-control mb-2"
+        />
+        <div
+          *ngIf="m.lImg.touched && m.lImg.invalid"
+          class="alert alert-danger"
+        >
+          <div class="alert alert-danger" *ngIf="m.lImg.errors?.required">
+            Please upload license image.
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="form-group center">
+        <button
+          class="btn btn-primary"
+          [disabled]="driverMaster.invalid"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+    <div class="col-md-12" style="width:100%">
+      <table id="tblFormData">
+        <thead>
+          <tr>
+            <td>Driver Name</td>
+            <td>Contact Number</td>
+            <td>Licence Number</td>
+            <td>Licence Validity</td>
+            <td>Edit</td>
+            <td>Delete</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of formData; index as i">
+            <td>{{ user.dname }}</td>
+            <td>{{ user.mob }}</td>
+            <td>{{ user.lno }}</td>
+            <td>{{ user.date }}</td>
+            <td><a class="fa fa-edit" (click)="editRow($event, i)"></a></td>
+            <td><a class="fa fa-trash" (click)="deleteRow($event, i)"></a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- <div class="m-3">
+      <p>Angular ng-bootstrap table : filter and pagination</p>
+      <form>
+        <div class="form-group form-inline">
+          Search country by name:
+    <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="searchTerm"
+            (input)="search('searchTerm')" />
+        </div>
+      </form>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col" sortable="name">Country</th>
+            <th scope="col" sortable="area">Area</th>
+            <th scope="col" sortable="population">Population</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let country of drivers; listFilter: searchTerm | slice: (page-1) * pageSize : page * pageSize; index as i">
+            <th scope="row">{{ (page -1) * pageSize + i + 1 }}</th>
+            <td>
+              {{ country.drivername }}
+            </td>
+            <td>{{ country.contact | number }}</td>
+            <td>{{ country.LicenceNo }}</td>
+            <td>{{ country.LicenceValidity }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [boundaryLinks]="true"
+        [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>
+    </div> -->
+    </div>
+
+  <div class="col-md-3"></div>
+</div>

@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class VehicleRegistrationComponent implements OnInit {
   public formVehicleRegistration:FormGroup;
+  public formData: any=[];
   Brands :any=['Lamborghini','BMW','Ferrari','Mercedes','Toyota']
   constructor(private formBuilder:FormBuilder) {
     this.formVehicleRegistration=formBuilder.group(
@@ -27,6 +28,8 @@ export class VehicleRegistrationComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.m.VOname.value+'  rno '+this.m.VRNo.value+'  brand '+this.m.brand.value);
+    this.formData.push(this.formVehicleRegistration.value);
+    this.formData.reset();
+    alert(this.m.VOname.value+'  rno '+this.m.VRNo.value+'  brand '+this.m.brand.value);
   }
 }

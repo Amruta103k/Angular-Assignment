@@ -1,26 +1,19 @@
 [
   {
-    "drivername":"amruta",
-    "contact":9834289233,
-    "LicenceNo": 9842,
-    "LicenceValidity": "20062022"
+    "dname":"amruta",
+    "mob":9834289233,
+    "lno": 9842,
+    "date": "20062022"
   },
   {
-    "drivername":"amruta",
-    "contact":9834289233,
-    "LicenceNo": 9842,
-    "LicenceValidity": "20062022"
-  },
-  {
-    "drivername":"amruta",
-    "contact":9834289233,
-    "LicenceNo": 9842,
-    "LicenceValidity": "20062022"
-  },
-  {
-    "drivername":"amruta",
-    "contact":9834289233,
-    "LicenceNo": 9842,
-    "LicenceValidity": "20062022"
+    "dname":"dev",
+    "mob":9834289233,
+    "lno": 9842,
+    "date": "20062022"
+  }, {
+    "dname":"rahul",
+    "mob":9834289233,
+    "lno": 9842,
+    "date": "20062022"
   }
 ]

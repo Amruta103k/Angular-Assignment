@@ -7,8 +7,8 @@ margin: 1%;
 align-self: center;
 }
 
-tr:hover {background-color: rgb(230, 222, 222);}
-th {
+tr:hover {background-color: rgb(87, 84, 84);}
+table>tr>th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;

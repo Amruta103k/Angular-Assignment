@@ -71,6 +71,8 @@
           <div class="alert alert-danger" *ngIf="m.lImg.errors?.required">
             Please upload license image.
           </div>
+          <div *ngIf="m.lImg.errors?.pattern">Please select jpg,jpeg,png type file.</div>
+
         </div>
       </div>
       <br />
@@ -80,8 +82,13 @@
           [disabled]="driverMaster.invalid"
           type="submit"
         >
-          Submit
+          Save
         </button>
+        <button
+        class="btn btn-primary" (click)="onCancle()"
+      >
+        Cancel
+      </button>
       </div>
     </form>
   </div>
@@ -103,6 +110,7 @@
             <td>{{ user.mob }}</td>
             <td>{{ user.lno }}</td>
             <td>{{ user.date }}</td>
+            <td>{{ user.lImg}}</td>
             <td><a class="fa fa-edit" (click)="editRow($event, i)"></a></td>
             <td><a class="fa fa-trash" (click)="deleteRow($event, i)"></a></td>
           </tr>

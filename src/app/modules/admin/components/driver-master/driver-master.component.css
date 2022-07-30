@@ -1,0 +1,21 @@
+table {
+  background-color: #093240;
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: 100%;
+margin: 1%;
+align-self: center;
+}
+
+tr:hover {background-color: rgb(87, 84, 84);}
+table>tr>th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #09090a;
+  color: white;
+}
+
+.bg1{
+  background-color: #1174b6;
+}

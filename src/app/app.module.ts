@@ -11,6 +11,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DatePipe } from '@angular/common';
 import { ListFilterPipe } from './Pipes/listFilterPipe';
 import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import {ServiceService} from './services/db-connectivity-service.service';
 
 @NgModule({
   declarations: [AppComponent, ValidationComponent, LoginComponent,ListFilterPipe],
@@ -20,9 +22,10 @@ import { HttpClient } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
-  providers: [AuthService,DatePipe,HttpClient],
+  providers: [AuthService,DatePipe,HttpClient,ServiceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

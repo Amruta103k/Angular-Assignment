@@ -11,14 +11,17 @@
           style="width: 100%"
           class="form-control mb-2"
         />
+
         <div
           *ngIf="m.dname.touched && m.dname.invalid"
           class="alert alert-danger"
         >
-          <div *ngIf="m.dname.errors?.required">Please enter driver name</div>
-          <div *ngIf="m.dname.errors?.pattern">
-            Please enter only alphabet characters
+          <div class="alert alert-danger" *ngIf="m.dname.errors?.required">
+            Please enter driver name
           </div>
+        </div>
+        <div *ngIf="m.dname.errors?.pattern" class="alert alert-danger">
+          Please enter only alphabet characters
         </div>
         <label>Contact number : </label>
         <input
@@ -30,8 +33,12 @@
           class="form-control mb-2"
         />
         <div *ngIf="m.mob.touched && m.mob.invalid" class="alert alert-danger">
-          <div *ngIf="m.mob.errors?.required">Please enter mobile number</div>
-          <div *ngIf="m.mob.errors?.pattern">Mobile number is not 10 digit</div>
+          <div *ngIf="m.mob.errors?.required" class="alert alert-danger">
+            Please enter mobile number
+          </div>
+        </div>
+        <div *ngIf="m.mob.errors?.pattern" class="alert alert-danger">
+          Mobile number is not 10 digit
         </div>
 
         <label>License Number : </label>
@@ -42,8 +49,12 @@
           class="form-control mb-2"
         />
         <div *ngIf="m.lno.touched && m.lno.invalid" class="alert alert-danger">
-          <div *ngIf="m.lno.errors?.required">Please enter license number</div>
-          <div *ngIf="m.lno.errors?.pattern">Please enter only digit</div>
+          <div *ngIf="m.lno.errors?.required" class="alert alert-danger">
+            Please enter license number
+          </div>
+        </div>
+        <div *ngIf="m.lno.errors?.pattern" class="alert alert-danger">
+          Please enter only digit
         </div>
         <label> License Validity: </label>
         <div class="row">
@@ -71,8 +82,9 @@
           <div class="alert alert-danger" *ngIf="m.lImg.errors?.required">
             Please upload license image.
           </div>
-          <div *ngIf="m.lImg.errors?.pattern">Please select jpg,jpeg,png type file.</div>
-
+        </div>
+        <div *ngIf="m.lImg.errors?.pattern" class="alert alert-danger">
+          Please select jpg,jpeg,png type file.
         </div>
       </div>
       <br />
@@ -82,42 +94,38 @@
           [disabled]="driverMaster.invalid"
           type="submit"
         >
-          Save
+         {{EventValue}}
         </button>
-        <button
-        class="btn btn-primary" (click)="onCancle()"
-      >
-        Cancel
-      </button>
+        <button class="btn btn-primary" (click)="onCancle()">Cancel</button>
       </div>
     </form>
   </div>
-    <div class="col-md-12" style="width:100%">
-      <table id="tblFormData">
-        <thead>
-          <tr>
-            <td>Driver Name</td>
-            <td>Contact Number</td>
-            <td>Licence Number</td>
-            <td>Licence Validity</td>
-            <td>Edit</td>
-            <td>Delete</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of formData; index as i">
-            <td>{{ user.dname }}</td>
-            <td>{{ user.mob }}</td>
-            <td>{{ user.lno }}</td>
-            <td>{{ user.date }}</td>
-            <td>{{ user.lImg}}</td>
-            <td><a class="fa fa-edit" (click)="editRow($event, i)"></a></td>
-            <td><a class="fa fa-trash" (click)="deleteRow($event, i)"></a></td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="col-md-12" style="width: 100%">
+    <table id="tblFormData">
+      <thead>
+        <tr>
+          <td>Driver Name</td>
+          <td>Contact Number</td>
+          <td>Licence Number</td>
+          <td>Licence Validity</td>
+          <td>Edit</td>
+          <td>Delete</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of formData; index as i">
+          <td>{{ user.dname }}</td>
+          <td>{{ user.mob }}</td>
+          <td>{{ user.lno }}</td>
+          <td>{{ user.date }}</td>
+          <td>{{ user.lImg }}</td>
+          <td><a class="fa fa-edit" (click)="editRow($event, i)"></a></td>
+          <td><a class="fa fa-trash" (click)="deleteRow($event, i)"></a></td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- <div class="m-3">
+    <!-- <div class="m-3">
       <p>Angular ng-bootstrap table : filter and pagination</p>
       <form>
         <div class="form-group form-inline">
@@ -152,7 +160,7 @@
       <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [boundaryLinks]="true"
         [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>
     </div> -->
-    </div>
+  </div>
 
   <div class="col-md-3"></div>
 </div>

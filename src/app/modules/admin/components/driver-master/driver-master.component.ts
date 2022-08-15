@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import driverDataJson from 'src/assets/Data/driverInfo.json';
+import { ServiceService } from 'src/app/services/db-connectivity-service.service';
 import {
   FormArray,
   FormBuilder,
@@ -19,8 +20,13 @@ export class DriverMasterComponent implements OnInit {
   public isEdit: boolean = false;
   public editRowNumber: number = 0;
   public driverMaster: FormGroup;
+  data: any;
   formData: any = [];
-  constructor(private formBuilder: FormBuilder) {
+  EventValue: any = 'Save';
+  constructor(
+    private formBuilder: FormBuilder,
+    private ServiceService: ServiceService
+  ) {
     this.driverMaster = formBuilder.group({
       dname: ['', [Validators.required, Validators.pattern('[a-zA-Z]{0,20}$')]],
       lno: ['', [Validators.required, Validators.pattern('[0-9]{0,20}$')]],
@@ -40,32 +46,47 @@ export class DriverMasterComponent implements OnInit {
     return this.driverMaster.controls;
   }
 
+  // onSubmit() {
+  //   if (this.isEdit == false) {
+  //     this.formData.push(this.driverMaster.value);
+  //   } else {
+  //     this.formData[this.editRowNumber].dname = this.m.dname.value;
+  //     this.formData[this.editRowNumber].date = this.m.date.value;
+  //     this.formData[this.editRowNumber].mob = this.m.mob.value;
+  //     this.formData[this.editRowNumber].lImg = this.m.lImg.value;
+
+  //     this.formData[this.editRowNumber].lno = this.m.lno.value;
+  //     this.isEdit = false;
+  //   }
+  //   this.driverMaster.reset();
+  // }
+
   onSubmit() {
     if (this.isEdit == false) {
-      this.formData.push(this.driverMaster.value);
+      this.Save();
     } else {
-      this.formData[this.editRowNumber].dname = this.m.dname.value;
-      this.formData[this.editRowNumber].date = this.m.date.value;
-      this.formData[this.editRowNumber].mob = this.m.mob.value;
-      this.formData[this.editRowNumber].lImg = this.m.lImg.value;
-
-      this.formData[this.editRowNumber].lno = this.m.lno.value;
+      this.Update();
       this.isEdit = false;
     }
-    this.driverMaster.reset();
   }
+
   onCancle() {
-    this.driverMaster.reset();
+    // this.driverMaster.reset();
+    this.resetFrom();
   }
 
   ngOnInit() {
-    formData: driverDataJson;
+    this.getdata();
   }
 
   deleteRow(event: any, index: number) {
     if (confirm('Are you sure you want to delete?')) {
       this.formData.splice(index, 1);
       this.formData();
+      this.ServiceService.deleteData(index).subscribe((d) => {
+        this.data = d;
+        this.getdata();
+      });
     }
   }
 
@@ -78,8 +99,47 @@ export class DriverMasterComponent implements OnInit {
       this.m.date.setValue(this.formData[index].date);
       this.m.mob.setValue(this.formData[index].mob);
       this.m.lImg.setValue(this.formData[index].lImg);
-
+      this.EventValue = 'Update';
       alert('Update record');
     }
+  }
+
+  getdata() {
+    this.ServiceService.getData().subscribe((d) => {
+      this.data = d;
+    });
+  }
+
+  Save() {
+    this.isEdit = false;
+
+    if (this.formData.invalid) {
+      return;
+    }
+    this.ServiceService.postData(this.formData.value).subscribe((d) => {
+      this.data = d;
+      this.resetFrom();
+    });
+  }
+  Update() {
+    this.isEdit = true;
+
+    if (this.formData.invalid) {
+      return;
+    }
+    this.ServiceService.putData(
+      this.formData.value.editRowNumber,
+      this.formData.value
+    ).subscribe((d) => {
+      this.data = d;
+      this.resetFrom();
+    });
+  }
+
+  resetFrom() {
+    this.getdata();
+    this.formData.reset();
+    this.EventValue = 'Save';
+    this.isEdit = false;
   }
 }
